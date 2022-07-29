@@ -63,9 +63,9 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:5000/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:5000/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MyCloud.Faults" />
       <xsd:import schemaLocation="http://localhost:5000/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:5000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyCloud.Model" />
-      <xsd:import schemaLocation="http://localhost:5000/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/MyCloud.Faults" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceCloud_GetCloudFileWithContent_InputMessage">
@@ -73,6 +73,9 @@
   </wsdl:message>
   <wsdl:message name="IServiceCloud_GetCloudFileWithContent_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCloudFileWithContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceCloud_GetCloudFileWithContent_MissingFileFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/MyCloud.Faults" name="detail" element="q1:MissingFileFault" />
   </wsdl:message>
   <wsdl:message name="IServiceCloud_UploadFile_InputMessage">
     <wsdl:part name="parameters" element="tns:UploadFile" />
@@ -87,7 +90,7 @@
     <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
   </wsdl:message>
   <wsdl:message name="IServiceCloud_DeleteFile_MissingFileFaultFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/MyCloud.Faults" name="detail" element="q1:MissingFileFault" />
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/MyCloud.Faults" name="detail" element="q2:MissingFileFault" />
   </wsdl:message>
   <wsdl:message name="IServiceCloud_UserFilesArray_InputMessage">
     <wsdl:part name="parameters" element="tns:UserFilesArray" />
@@ -99,6 +102,7 @@
     <wsdl:operation name="GetCloudFileWithContent">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContent" message="tns:IServiceCloud_GetCloudFileWithContent_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContentResponse" message="tns:IServiceCloud_GetCloudFileWithContent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContentMissingFileFaultFault" name="MissingFileFaultFault" message="tns:IServiceCloud_GetCloudFileWithContent_MissingFileFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="UploadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceCloud/UploadFile" message="tns:IServiceCloud_UploadFile_InputMessage" />
@@ -125,6 +129,9 @@
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="MissingFileFaultFault">
+        <soap12:fault use="literal" name="MissingFileFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="UploadFile">
       <soap12:operation soapAction="http://tempuri.org/IServiceCloud/UploadFile" style="document" />

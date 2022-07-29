@@ -27,11 +27,13 @@ namespace Host
                 }
                 catch (TimeoutException timeProblem)
                 {
+                    logger.Error(timeProblem.Message);
                     Console.WriteLine(timeProblem.Message);
                     Console.ReadLine();
                 }
                 catch (CommunicationException commProblem)
                 {
+                    logger.Error(commProblem.Message);
                     Console.WriteLine(commProblem.Message);
                     Console.ReadLine();
                 }

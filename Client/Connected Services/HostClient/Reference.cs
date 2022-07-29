@@ -72,6 +72,7 @@ namespace Client.HostClient {
     public interface IServiceCloud {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContent", ReplyAction="http://tempuri.org/IServiceCloud/GetCloudFileWithContentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MyCloud.Faults.MissingFileFault), Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContentMissingFileFaultFault", Name="MissingFileFault", Namespace="http://schemas.datacontract.org/2004/07/MyCloud.Faults")]
         MyCloud.Model.CloudFileDTO GetCloudFileWithContent(int fileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContent", ReplyAction="http://tempuri.org/IServiceCloud/GetCloudFileWithContentResponse")]

@@ -93,9 +93,9 @@ namespace Client
                 {
                     logger.Debug($"File (FileId={cloudFileDTO.FileId}) wasn't in cloud");
                     MessageBox.Show($"Файл {cloudFileDTO.FileName} отсутствует в облаке", "Ошибка");
-                    updateSourceBinding();
                 }
             }
+            updateSourceBinding();
         }
 
         private void uploadButton_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace Client
                         {
                             if (fileSize > 500000000)
                             {
-                                throw new FileSizeException("File size can not be larger than 500 MB"));
+                                throw new FileSizeException("File size can not be larger than 500 MB");
                             }
                             byte[] content = new byte[fileSize];
                             fileStream.Read(content, 0, content.Length);
