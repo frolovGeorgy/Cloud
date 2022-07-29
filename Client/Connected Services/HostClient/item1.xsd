@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:5000/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MyCloud.Model" />
+  <xs:element name="GetCloudFileWithContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCloudFileWithContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="GetCloudFileWithContentResult" nillable="true" type="q1:CloudFileDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="UploadFile">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="cloudFile" nillable="true" type="q1:CloudFile" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="cloudFileDTO" nillable="true" type="q2:CloudFileDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -25,27 +39,17 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="FilesList">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FilesListResponse">
+  <xs:element name="UserFilesArray">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="FilesListResult" nillable="true" type="q2:ArrayOfCloudFile" />
+        <xs:element minOccurs="0" name="username" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="FilesArray">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="FilesArrayResponse">
+  <xs:element name="UserFilesArrayResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="FilesArrayResult" nillable="true" type="q3:ArrayOfCloudFile" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/MyCloud.Model" minOccurs="0" name="UserFilesArrayResult" nillable="true" type="q3:ArrayOfCloudFileDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

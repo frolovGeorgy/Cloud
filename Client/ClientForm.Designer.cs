@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class Form1
+    partial class ClientForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -35,15 +35,17 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.deleteButton = new System.Windows.Forms.Button();
             this.cloudFileDataGridView = new System.Windows.Forms.DataGridView();
-            this.cloudFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cloudFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.cloudFileDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cloudFileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // downloadButton
             // 
+            this.downloadButton.Enabled = false;
             this.downloadButton.Location = new System.Drawing.Point(12, 415);
             this.downloadButton.Name = "downloadButton";
             this.downloadButton.Size = new System.Drawing.Size(102, 23);
@@ -54,7 +56,8 @@
             // 
             // uploadButton
             // 
-            this.uploadButton.Location = new System.Drawing.Point(350, 415);
+            this.uploadButton.Enabled = false;
+            this.uploadButton.Location = new System.Drawing.Point(222, 415);
             this.uploadButton.Name = "uploadButton";
             this.uploadButton.Size = new System.Drawing.Size(106, 23);
             this.uploadButton.TabIndex = 2;
@@ -69,7 +72,8 @@
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(185, 415);
+            this.deleteButton.Enabled = false;
+            this.deleteButton.Location = new System.Drawing.Point(120, 415);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(96, 23);
             this.deleteButton.TabIndex = 4;
@@ -90,12 +94,8 @@
             this.cloudFileDataGridView.Location = new System.Drawing.Point(12, 12);
             this.cloudFileDataGridView.Name = "cloudFileDataGridView";
             this.cloudFileDataGridView.ReadOnly = true;
-            this.cloudFileDataGridView.Size = new System.Drawing.Size(444, 397);
+            this.cloudFileDataGridView.Size = new System.Drawing.Size(468, 397);
             this.cloudFileDataGridView.TabIndex = 5;
-            // 
-            // cloudFileBindingSource
-            // 
-            this.cloudFileBindingSource.DataSource = typeof(MyCloud.Model.CloudFile);
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -111,16 +111,31 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             // 
-            // Form1
+            // cloudFileBindingSource
+            // 
+            this.cloudFileBindingSource.DataSource = typeof(MyCloud.Model.CloudFileDTO);
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(334, 415);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(146, 23);
+            this.loginButton.TabIndex = 6;
+            this.loginButton.Text = "Авторизироваться";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
+            // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(472, 458);
+            this.ClientSize = new System.Drawing.Size(492, 458);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.cloudFileDataGridView);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.uploadButton);
             this.Controls.Add(this.downloadButton);
-            this.Name = "Form1";
+            this.Name = "ClientForm";
             this.Text = "Файловое облако";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -141,6 +156,7 @@
         private System.Windows.Forms.DataGridView cloudFileDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button loginButton;
     }
 }
 

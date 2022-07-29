@@ -1,4 +1,5 @@
-﻿using MyCloud.Model;
+﻿using MyCloud.Faults;
+using MyCloud.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,17 +13,18 @@ namespace MyCloud
     [ServiceContract]
     public interface IServiceCloud
     {
+        [OperationContract]
+        [FaultContract(typeof(MissingFileFault))]
+        CloudFileDTO GetCloudFileWithContent(int fileId);
 
         [OperationContract]
-        void UploadFile(CloudFile cloudFile);
+        void UploadFile(CloudFileDTO cloudFileDTO);
 
         [OperationContract]
+        [FaultContract(typeof(MissingFileFault))]
         void DeleteFile(int fileId);
 
         [OperationContract]
-        List<CloudFile> FilesList();
-
-        [OperationContract]
-        CloudFile[] FilesArray();
+        CloudFileDTO[] UserFilesArray(string username);
     }
 }

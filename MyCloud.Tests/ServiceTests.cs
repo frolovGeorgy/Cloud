@@ -21,10 +21,10 @@ namespace MyCloud.Tests
         {
             data = new List<CloudFile>
                 {
-                    new CloudFile { Content = new byte[] { 1 }, FileName = "first.f", FileSize = 1 },
-                    new CloudFile { Content = new byte[] { 1, 2 }, FileName = "second.s", FileSize = 2 },
-                    new CloudFile { Content = new byte[] { 1, 2, 3 }, FileName = "third.t", FileSize = 3 },
-                    new CloudFile { Content = new byte[] { 1, 2, 3, 4 }, FileName = "fourth.f", FileSize = 4 },
+                    new CloudFile { Content = new byte[] { 1 }, FileName = "first.f", FileSize = 1, Username = "Bob" },
+                    new CloudFile { Content = new byte[] { 1, 2 }, FileName = "second.s", FileSize = 2, Username = "Bob" },
+                    new CloudFile { Content = new byte[] { 1, 2, 3 }, FileName = "third.t", FileSize = 3, Username = "Cat" },
+                    new CloudFile { Content = new byte[] { 1, 2, 3, 4 }, FileName = "fourth.f", FileSize = 4, Username = "Bob" },
                 };
 
             context = new CloudFileContext(Effort.DbConnectionFactory.CreateTransient());
@@ -41,10 +41,10 @@ namespace MyCloud.Tests
         {
             using (context)
             {
-                CloudFile cloudFile = new CloudFile { Content = new byte[] { 1, 2, 3, 4, 10 }, FileName = "newContent.txt", FileSize = 5 };
+                CloudFileDTO cloudFile = new CloudFileDTO { Content = new byte[] { 1, 2, 3, 4, 10 }, FileName = "newContent.txt", FileSize = 5, Username = "Dog" };
                 service.UploadFile(cloudFile);
                 Assert.AreEqual(data.Count + 1, context.CloudFiles.Count());
-                Assert.IsTrue(context.CloudFiles.Any(c => c.FileId == cloudFile.FileId));
+                Assert.IsTrue(context.CloudFiles.Any(c => c.FileId == data.Count + 1));
             }
         }
 
@@ -54,28 +54,20 @@ namespace MyCloud.Tests
             using (context)
             {
                 CloudFile cloudFile = context.CloudFiles.First();
-                service.DeleteFile(cloudFile);
+                service.DeleteFile(cloudFile.FileId);
                 Assert.AreEqual(data.Count - 1, context.CloudFiles.Count());
                 Assert.IsFalse(context.CloudFiles.Any(c => c.FileId == cloudFile.FileId));
             }
         }
 
         [TestMethod]
-        public void FileListTest()
-        {
-            using (context)
-            {
-                List<CloudFile> result = service.FilesList();
-                Assert.AreEqual(data.Count, result.Count);
-            }
-        }
-        [TestMethod]
         public void FileArrayTest()
         {
             using (context)
             {
-                CloudFile[] result = service.FilesArray();
-                Assert.AreEqual(data.Count, result.Length);
+                var login = "Bob";
+                CloudFileDTO[] result = service.UserFilesArray(login);
+                Assert.AreEqual(data.Where(p => p.Username == login).ToList().Count, result.Length);
             }
         }
     }

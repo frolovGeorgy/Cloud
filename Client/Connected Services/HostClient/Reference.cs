@@ -9,35 +9,92 @@
 //------------------------------------------------------------------------------
 
 namespace Client.HostClient {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.CollectionDataContractAttribute(Name="StringCollection", Namespace="http://nlog-project.org/ws/", ItemName="l")]
+    [System.SerializableAttribute()]
+    public class StringCollection : System.Collections.Generic.List<string> {
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(Namespace="http://nlog-project.org/ws/", ConfigurationName="HostClient.ILogReceiverServer")]
+    public interface ILogReceiverServer {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages", ReplyAction="http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessagesResponse")]
+        void ProcessLogMessages(NLog.LogReceiverService.NLogEvents events);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessages", ReplyAction="http://nlog-project.org/ws/ILogReceiverServer/ProcessLogMessagesResponse")]
+        System.Threading.Tasks.Task ProcessLogMessagesAsync(NLog.LogReceiverService.NLogEvents events);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ILogReceiverServerChannel : Client.HostClient.ILogReceiverServer, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class LogReceiverServerClient : System.ServiceModel.ClientBase<Client.HostClient.ILogReceiverServer>, Client.HostClient.ILogReceiverServer {
+        
+        public LogReceiverServerClient() {
+        }
+        
+        public LogReceiverServerClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public LogReceiverServerClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LogReceiverServerClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public LogReceiverServerClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void ProcessLogMessages(NLog.LogReceiverService.NLogEvents events) {
+            base.Channel.ProcessLogMessages(events);
+        }
+        
+        public System.Threading.Tasks.Task ProcessLogMessagesAsync(NLog.LogReceiverService.NLogEvents events) {
+            return base.Channel.ProcessLogMessagesAsync(events);
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="HostClient.IServiceCloud")]
     public interface IServiceCloud {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/UploadFile", ReplyAction="http://tempuri.org/IServiceCloud/UploadFileResponse")]
-        void UploadFile(MyCloud.Model.CloudFile cloudFile);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContent", ReplyAction="http://tempuri.org/IServiceCloud/GetCloudFileWithContentResponse")]
+        MyCloud.Model.CloudFileDTO GetCloudFileWithContent(int fileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/GetCloudFileWithContent", ReplyAction="http://tempuri.org/IServiceCloud/GetCloudFileWithContentResponse")]
+        System.Threading.Tasks.Task<MyCloud.Model.CloudFileDTO> GetCloudFileWithContentAsync(int fileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/UploadFile", ReplyAction="http://tempuri.org/IServiceCloud/UploadFileResponse")]
-        System.Threading.Tasks.Task UploadFileAsync(MyCloud.Model.CloudFile cloudFile);
+        void UploadFile(MyCloud.Model.CloudFileDTO cloudFileDTO);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/UploadFile", ReplyAction="http://tempuri.org/IServiceCloud/UploadFileResponse")]
+        System.Threading.Tasks.Task UploadFileAsync(MyCloud.Model.CloudFileDTO cloudFileDTO);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/DeleteFile", ReplyAction="http://tempuri.org/IServiceCloud/DeleteFileResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(MyCloud.Faults.MissingFileFault), Action="http://tempuri.org/IServiceCloud/DeleteFileMissingFileFaultFault", Name="MissingFileFault", Namespace="http://schemas.datacontract.org/2004/07/MyCloud.Faults")]
         void DeleteFile(int fileId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/DeleteFile", ReplyAction="http://tempuri.org/IServiceCloud/DeleteFileResponse")]
         System.Threading.Tasks.Task DeleteFileAsync(int fileId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/FilesList", ReplyAction="http://tempuri.org/IServiceCloud/FilesListResponse")]
-        MyCloud.Model.CloudFile[] FilesList();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/UserFilesArray", ReplyAction="http://tempuri.org/IServiceCloud/UserFilesArrayResponse")]
+        MyCloud.Model.CloudFileDTO[] UserFilesArray(string username);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/FilesList", ReplyAction="http://tempuri.org/IServiceCloud/FilesListResponse")]
-        System.Threading.Tasks.Task<MyCloud.Model.CloudFile[]> FilesListAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/FilesArray", ReplyAction="http://tempuri.org/IServiceCloud/FilesArrayResponse")]
-        MyCloud.Model.CloudFile[] FilesArray();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/FilesArray", ReplyAction="http://tempuri.org/IServiceCloud/FilesArrayResponse")]
-        System.Threading.Tasks.Task<MyCloud.Model.CloudFile[]> FilesArrayAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceCloud/UserFilesArray", ReplyAction="http://tempuri.org/IServiceCloud/UserFilesArrayResponse")]
+        System.Threading.Tasks.Task<MyCloud.Model.CloudFileDTO[]> UserFilesArrayAsync(string username);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,12 +124,20 @@ namespace Client.HostClient {
                 base(binding, remoteAddress) {
         }
         
-        public void UploadFile(MyCloud.Model.CloudFile cloudFile) {
-            base.Channel.UploadFile(cloudFile);
+        public MyCloud.Model.CloudFileDTO GetCloudFileWithContent(int fileId) {
+            return base.Channel.GetCloudFileWithContent(fileId);
         }
         
-        public System.Threading.Tasks.Task UploadFileAsync(MyCloud.Model.CloudFile cloudFile) {
-            return base.Channel.UploadFileAsync(cloudFile);
+        public System.Threading.Tasks.Task<MyCloud.Model.CloudFileDTO> GetCloudFileWithContentAsync(int fileId) {
+            return base.Channel.GetCloudFileWithContentAsync(fileId);
+        }
+        
+        public void UploadFile(MyCloud.Model.CloudFileDTO cloudFileDTO) {
+            base.Channel.UploadFile(cloudFileDTO);
+        }
+        
+        public System.Threading.Tasks.Task UploadFileAsync(MyCloud.Model.CloudFileDTO cloudFileDTO) {
+            return base.Channel.UploadFileAsync(cloudFileDTO);
         }
         
         public void DeleteFile(int fileId) {
@@ -83,20 +148,12 @@ namespace Client.HostClient {
             return base.Channel.DeleteFileAsync(fileId);
         }
         
-        public MyCloud.Model.CloudFile[] FilesList() {
-            return base.Channel.FilesList();
+        public MyCloud.Model.CloudFileDTO[] UserFilesArray(string username) {
+            return base.Channel.UserFilesArray(username);
         }
         
-        public System.Threading.Tasks.Task<MyCloud.Model.CloudFile[]> FilesListAsync() {
-            return base.Channel.FilesListAsync();
-        }
-        
-        public MyCloud.Model.CloudFile[] FilesArray() {
-            return base.Channel.FilesArray();
-        }
-        
-        public System.Threading.Tasks.Task<MyCloud.Model.CloudFile[]> FilesArrayAsync() {
-            return base.Channel.FilesArrayAsync();
+        public System.Threading.Tasks.Task<MyCloud.Model.CloudFileDTO[]> UserFilesArrayAsync(string username) {
+            return base.Channel.UserFilesArrayAsync(username);
         }
     }
 }

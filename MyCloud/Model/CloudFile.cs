@@ -28,5 +28,9 @@ namespace MyCloud.Model
         [Required]
         [Column("file_size")]
         public float FileSize { get; set; }
+
+        [Required]
+        [Column("username")]
+        public string Username { get; set; }
     }
 }

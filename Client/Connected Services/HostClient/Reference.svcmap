@@ -22,10 +22,13 @@
     <MetadataSource Address="http://localhost:5000" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="a2a7bd33-f2c5-4b38-a6c0-b9f2ee57bc61" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd4" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="3f4f35f2-39a2-443c-a11b-e991ed0671dd" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd0" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="fb88397b-7f9f-4b3a-a1df-6d7629101e68" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd3" />
+    <MetadataFile FileName="item.wsdl" MetadataType="Wsdl" ID="c3d37326-8be9-4ced-a6c6-259920d8f66b" SourceId="1" SourceUrl="http://localhost:5000/?wsdl=wsdl0" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="1591878d-00ee-493c-a82a-3f490d7ca259" SourceId="1" SourceUrl="http://localhost:5000/?disco" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="ce59d2ac-9e44-4387-b692-3f0f8a0dbced" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd2" />
     <MetadataFile FileName="ServiceCloud.wsdl" MetadataType="Wsdl" ID="50a1a435-52c1-43f9-af46-c42738581782" SourceId="1" SourceUrl="http://localhost:5000/?wsdl" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="3f4f35f2-39a2-443c-a11b-e991ed0671dd" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd0" />
     <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="8bb937e9-9129-4919-99e6-6a6cbd3a96eb" SourceId="1" SourceUrl="http://localhost:5000/?xsd=xsd1" />
   </Metadata>
   <Extensions>
