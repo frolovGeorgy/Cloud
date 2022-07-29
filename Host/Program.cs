@@ -17,11 +17,24 @@ namespace Host
             Logger logger = LogManager.GetCurrentClassLogger();
             using (var host = new ServiceHost(typeof(ServiceCloud)))
             {
-                host.Open();
-                logger.Debug("Server started in host");
-                Console.WriteLine("Server started");
-                Console.WriteLine("Press Enter to stop server");
-                Console.Read();
+                try
+                {
+                    host.Open();
+                    logger.Debug("Server started in host");
+                    Console.WriteLine("Server started");
+                    Console.WriteLine("Press Enter to stop server");
+                    Console.Read();
+                }
+                catch (TimeoutException timeProblem)
+                {
+                    Console.WriteLine(timeProblem.Message);
+                    Console.ReadLine();
+                }
+                catch (CommunicationException commProblem)
+                {
+                    Console.WriteLine(commProblem.Message);
+                    Console.ReadLine();
+                }
             }
         }
     }
