@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +18,18 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ClientForm());
+            try
+            {
+                Application.Run(new ClientForm());
+            } 
+            catch (TargetInvocationException)
+            {
+                Application.Run(new ConnectionErrorForm("Не удалось подключится к серверу"));
+            }
+            catch (EndpointNotFoundException)
+            {
+                Application.Run(new ConnectionErrorForm("Не удалось связаться с сервером"));
+            }
         }
     }
 }
